@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { Await, useLoaderData } from 'react-router-dom'
+import { Await } from 'react-router-dom'
 
 export const PersonPage = () => {
   return (
