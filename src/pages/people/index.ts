@@ -1,1 +1,1 @@
-export { PeoplePage } from './people.page'
+export { PeoplePage } from './ui/people.page'

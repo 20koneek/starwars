@@ -1,30 +1,25 @@
+import { PropsWithChildren } from 'react'
 import { List, Pagination } from '@mui/material'
-import { useNavigate } from 'react-router-dom'
-import { PersonComponent } from '../../../entities/person'
-import { Person } from '../../api'
-import { usePage } from '../../hooks'
+import { usePageNavigate } from '../../hooks/use-page-navigate'
 
-export const PaginationTable = ({ count, items }: { count: number, items: unknown[] }) => {
-  const page = usePage()
-  const navigate = useNavigate()
+const PER_PAGE = 10
+
+export const PaginationTable = ({ count, children }: PropsWithChildren<{ count: number }>) => {
+  const [page, nextPage] = usePageNavigate()
+  const pages = Math.ceil(count / PER_PAGE)
 
   return (
     <div>
       <List>
-        {items.map((data) => (
-          // @ts-ignore
-          <PersonComponent key={data.url} person={data as Person}/>
-        ))}
+        {children}
       </List>
 
       <Pagination
-        count={Math.ceil(count / items.length)}
+        count={pages}
         page={page}
         color="primary"
-        onChange={(e, p) => {
-          navigate({
-            search: `?page=${p}`,
-          })
+        onChange={(_, newPage) => {
+          nextPage(newPage)
         }}
       />
     </div>

@@ -1,4 +1,4 @@
-export type PeopleQuery<T> = {
+export type ListQuery<T> = {
   count: number
   next: string | null
   previous: string | null

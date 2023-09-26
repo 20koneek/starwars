@@ -1,10 +1,16 @@
 import styled from '@emotion/styled'
+import { Paper } from '@mui/material'
 
-export const Header = styled.header`
-  position: sticky;
+const Headerr = styled.header`
+  display: grid;
   height: 54px;
   top: 0;
   width: 100vw;
-  background: red;
+  grid-area: header
 `
 
+export const Header = () => (
+  <Headerr>
+    <Paper square>Logo</Paper>
+  </Headerr>
+)
