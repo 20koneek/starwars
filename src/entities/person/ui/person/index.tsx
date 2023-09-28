@@ -1,13 +1,16 @@
 import { useNavigate } from 'react-router-dom'
-import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material'
+import { Avatar, Divider, ListItemAvatar, ListItemButton, ListItemText, Typography } from '@mui/material'
 import type { Person } from '../../../../shared/api'
 
 export const PersonComponent = ({ person }: { person: Person }) => {
   const navigate = useNavigate()
 
   return (
-    <ListItem alignItems="flex-start">
-      <ListItemButton onClick={() => navigate(person.url.replace('https://swapi.dev/api', ''))}>
+    <>
+      <ListItemButton
+        alignItems="flex-start"
+        onClick={() => navigate(person.url.replace('https://swapi.dev/api', ''))}
+      >
         <ListItemAvatar>
           <Avatar alt={person.name} src="#"/>
         </ListItemAvatar>
@@ -39,6 +42,7 @@ export const PersonComponent = ({ person }: { person: Person }) => {
           }
         />
       </ListItemButton>
-    </ListItem>
+      <Divider/>
+    </>
   )
 }

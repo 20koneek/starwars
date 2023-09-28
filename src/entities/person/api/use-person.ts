@@ -6,7 +6,7 @@ export const usePerson = (personId: string) => {
     queryKey: [personId],
     queryFn: async ({ signal }): Promise<Person> => {
       const response = await fetch(
-        getUrl(`people/${personId}`),
+        getUrl({ path: `people/${personId}` }),
         { signal },
       )
 
