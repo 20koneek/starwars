@@ -1,22 +1,13 @@
-import { useEffect, useState } from 'react'
-import { Card, CardContent, CardHeader } from '@mui/material'
+import { Card, CardContent, CardHeader, LinearProgress } from '@mui/material'
 import { PaginationTable } from '../../../shared/ui'
 import { PersonComponent, usePeople } from '../../../entities/person'
 import { Search } from '../../../features/search/ui/search'
+import { useCache } from '../../../shared/hooks'
 
 export const PeoplePage = () => {
-  const [search, setSearch] = useState('')
-  const { data, isLoading } = usePeople(search)
+  const { data, isLoading } = usePeople()
 
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      console.log(search)
-    }, 250)
-    return () => clearTimeout(timeout)
-  }, [search])
-
-  // console.log({ data, isLoading })
-  if (!data) return <div></div>
+  const cashedCount = useCache(data?.count, isLoading)
 
   return (
     <Card>
@@ -28,14 +19,19 @@ export const PeoplePage = () => {
       />
 
       <CardContent>
-        <PaginationTable count={data.count}>
-          {data.results.map((person) => (
-            <PersonComponent
-              key={person.url}
-              person={person}
-            />
-          ))}
-        </PaginationTable>
+        {isLoading && (
+          <LinearProgress/>
+        )}
+        {cashedCount && (
+          <PaginationTable count={cashedCount}>
+            {data?.results.map((person) => (
+              <PersonComponent
+                key={person.url}
+                person={person}
+              />
+            ))}
+          </PaginationTable>
+        )}
       </CardContent>
     </Card>
   )

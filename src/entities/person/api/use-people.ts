@@ -1,8 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { getUrl, type ListQuery, type Person } from '../../../shared/api'
-import { useSearchQuery } from './use-search-query'
+import { useSearchQuery } from '../../../shared/hooks'
 
-export const usePeople = (search: string) => {
+export const usePeople = () => {
   const query = useSearchQuery()
 
   return useQuery({
