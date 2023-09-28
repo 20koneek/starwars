@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Card, CardContent, CardHeader, FormControl, IconButton, Input, InputAdornment } from '@mui/material'
-import SearchIcon from '@mui/icons-material/Search'
-import ClearIcon from '@mui/icons-material/Clear'
+import { Card, CardContent, CardHeader } from '@mui/material'
 import { PaginationTable } from '../../../shared/ui'
 import { PersonComponent, usePeople } from '../../../entities/person'
+import { Search } from '../../../features/search/ui/search'
 
 export const PeoplePage = () => {
   const [search, setSearch] = useState('')
@@ -22,35 +21,9 @@ export const PeoplePage = () => {
   return (
     <Card>
       <CardHeader
-        title='People'
+        title="People"
         action={
-          <FormControl
-            onChange={(e) => {
-              // @ts-ignore
-              setSearch(e.target.value)
-            }}
-            sx={{ m: 1, width: '25ch' }}
-            variant="standard"
-          >
-            {/*<InputLabel htmlFor="standard-adornment-password">Search</InputLabel>*/}
-            <Input
-              value={search}
-              id="standard-adornment-password"
-              type="text"
-              startAdornment={
-                <InputAdornment position="start">
-                  <SearchIcon/>
-                </InputAdornment>
-              }
-              endAdornment={
-                <InputAdornment position="end">
-                  <IconButton onClick={() => setSearch('')}>
-                    <ClearIcon fontSize="small"/>
-                  </IconButton>
-                </InputAdornment>
-              }
-            />
-          </FormControl>
+          <Search/>
         }
       />
 

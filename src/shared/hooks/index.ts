@@ -1,1 +1,1 @@
-export { usePage } from './use-page'
+export { useQueryPage } from './use-query-page'

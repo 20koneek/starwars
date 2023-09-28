@@ -1,11 +1,11 @@
 import { PropsWithChildren } from 'react'
 import { List, Pagination } from '@mui/material'
-import { usePageNavigate } from '../../hooks/use-page-navigate'
+import { useQueryPage } from '../../hooks'
 
 const PER_PAGE = 10
 
 export const PaginationTable = ({ count, children }: PropsWithChildren<{ count: number }>) => {
-  const [page, nextPage] = usePageNavigate()
+  const [page, setPage] = useQueryPage()
   const pages = Math.ceil(count / PER_PAGE)
 
   return (
@@ -19,7 +19,7 @@ export const PaginationTable = ({ count, children }: PropsWithChildren<{ count: 
         page={page}
         color="primary"
         onChange={(_, newPage) => {
-          nextPage(newPage)
+          setPage(newPage)
         }}
       />
     </div>
