@@ -6,5 +6,5 @@ type GetUrlParams = {
 }
 
 export const getUrl = ({ path, query }: GetUrlParams): URL => (
-  new URL(`api/${path}?${query}`, API_URL)
+  new URL(`api/${path}?${query ?? ''}`, API_URL)
 )

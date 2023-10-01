@@ -1,3 +1,6 @@
-export { PersonComponent } from './ui/person'
 export { usePeople } from './api/use-people'
 export { usePerson } from './api/use-person'
+export { updatedPersonsState } from './model/updated-persons.state'
+export { PersonComponent } from './ui/person'
+export { PersonCard } from './ui/person-card'
+export { PersonForm } from './ui/person-form'
