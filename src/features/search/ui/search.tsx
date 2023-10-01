@@ -1,7 +1,7 @@
 import { Button } from '@mui/material'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { SearchForm } from './search-form'
-import { useQuerySearch } from '../../../shared/hooks'
+import { useQuerySearch } from '../../../shared/hooks/use-query-search'
 
 type IFormInput = {
   search: string
@@ -9,7 +9,7 @@ type IFormInput = {
 
 export const Search = () => {
   const [search, setSearch] = useQuerySearch()
-  const { control, handleSubmit, reset } = useForm<IFormInput>({
+  const { control, handleSubmit, reset, register } = useForm<IFormInput>({
     defaultValues: {
       search,
     },

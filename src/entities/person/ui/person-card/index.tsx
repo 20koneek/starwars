@@ -8,13 +8,21 @@ import { Button, CardActions, CardContent, CardHeader } from '@mui/material'
 
 export const PersonCard = () => {
   const data = usePerson()
-  const [updatedPersons, setUpdatedPersons] = useRecoilState(updatedPersonsState)
+  const [, setUpdatedPersons] = useRecoilState(updatedPersonsState)
 
   const onSubmit: SubmitHandler<UpdatedPerson> = (updatedPerson) => {
-    setUpdatedPersons((prevState) => ({
-      ...prevState,
-      [data?.url ?? '']: updatedPerson,
-    }))
+    if (data) {
+      setUpdatedPersons((prevState) => ({
+        ...prevState,
+        [data.url]: {
+          originalName: prevState[data.url]?.originalName ?? data.name,
+          value: {
+            ...data,
+            ...updatedPerson,
+          },
+        },
+      }))
+    }
   }
 
   return (

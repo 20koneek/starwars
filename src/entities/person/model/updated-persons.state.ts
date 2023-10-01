@@ -1,11 +1,14 @@
 import { atom } from 'recoil'
-import { UpdatedPerson } from './type'
+import { Person } from '../../../shared/api'
 
 type UpdatedPersonsAtomValue = {
-  [key in string]: UpdatedPerson
+  [key in string]: {
+    originalName: string
+    value: Person
+  }
 }
 
 export const updatedPersonsState = atom<UpdatedPersonsAtomValue>({
   key: 'UpdatedPersonsAtom',
   default: {},
-});
+})

@@ -3,17 +3,11 @@ import { selectorFamily, useRecoilValue } from 'recoil'
 import { useParams } from 'react-router-dom'
 import { updatedPersonsState } from '../model/updated-persons.state'
 
-let abort: AbortController | undefined = undefined
-
 const userNameQuery = selectorFamily({
   key: 'UserName',
   get: (peopleId: string) => async (): Promise<Person> => {
-    // abort?.abort()
-    // abort = new AbortController()
-
     const response = await fetch(
       getUrl({ path: `people/${peopleId}` }),
-      // { signal: abort.signal },
     )
 
     return response.json() as any
@@ -25,7 +19,7 @@ const testtt = selectorFamily({
   get: (peopleId: string) => ({ get }) => {
     const person = get(userNameQuery(peopleId))
     const updatedPersons = get(updatedPersonsState)
-    const updatedPerson = updatedPersons[person.url] ?? {}
+    const updatedPerson = updatedPersons[person.url]?.value ?? {}
 
     return {
       ...person,

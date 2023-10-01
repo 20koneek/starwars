@@ -1,1 +1,1 @@
-export { PersonPage } from './person.page'
+export { PersonPage } from './ui/person.page'
