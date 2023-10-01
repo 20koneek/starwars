@@ -13,7 +13,7 @@ type Props = {
 }
 
 export const PersonForm = ({ person, onSubmit, readOnly }: Props) => {
-  const { control, handleSubmit, reset } = useForm<UpdatedPerson>({
+  const { control, handleSubmit } = useForm<UpdatedPerson>({
     defaultValues: person,
   })
 

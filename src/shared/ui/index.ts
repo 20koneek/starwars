@@ -1,2 +1,2 @@
 export { Header } from './header'
-export { PaginationTable } from './pagination-table'
+export { PaginationTable, PER_PAGE } from './pagination-table'

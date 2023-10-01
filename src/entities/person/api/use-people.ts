@@ -3,7 +3,7 @@ import { useQueryPage, useQuerySearch, useSearchQuery } from '../../../shared/ho
 import { useQuery } from '@tanstack/react-query'
 import { useRecoilValue } from 'recoil'
 import { updatedPersonsState } from '../model/updated-persons.state'
-import { PER_PAGE } from '../../../shared/ui/pagination-table'
+import { PER_PAGE } from '../../../shared/ui'
 import { useMemo } from 'react'
 
 const sortPerson = (p1: Person, p2: Person) => {

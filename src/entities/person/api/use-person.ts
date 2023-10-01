@@ -27,30 +27,9 @@ const testtt = selectorFamily({
     }
   },
 })
+
 export const usePerson = () => {
   const { peopleId } = useParams() as { peopleId: string }
 
   return useRecoilValue(testtt(peopleId))
 }
-//
-// return useQuery({
-//   queryKey: [peopleId],
-//   queryFn:
-// })
-// }
-
-// export const usePerson = () => {
-//   const { peopleId } = useParams() as { peopleId: string }
-//
-//   return useQuery({
-//     queryKey: [peopleId],
-//     queryFn: async ({ signal }): Promise<Person> => {
-//       const response = await fetch(
-//         getUrl({ path: `people/${peopleId}` }),
-//         { signal },
-//       )
-//
-//       return response.json() as any
-//     },
-//   })
-// }

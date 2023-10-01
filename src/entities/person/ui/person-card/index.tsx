@@ -4,9 +4,11 @@ import { updatedPersonsState } from '../../model/updated-persons.state'
 import { SubmitHandler } from 'react-hook-form'
 import { UpdatedPerson } from '../../model/type'
 import { PersonForm } from '../person-form'
-import { Button, CardActions, CardContent, CardHeader } from '@mui/material'
+import { Button, CardContent, CardHeader } from '@mui/material'
+import { useState } from 'react'
 
 export const PersonCard = () => {
+  const [readonly, setReadonly] = useState(true)
   const data = usePerson()
   const [, setUpdatedPersons] = useRecoilState(updatedPersonsState)
 
@@ -23,6 +25,7 @@ export const PersonCard = () => {
         },
       }))
     }
+    setReadonly(true)
   }
 
   return (
@@ -31,16 +34,20 @@ export const PersonCard = () => {
       <CardContent>
         <PersonForm
           person={data}
-          readOnly={false}
+          readOnly={readonly}
           onSubmit={onSubmit}
         />
-      </CardContent>
 
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
+        {readonly && (
+          <Button
+            sx={{ marginTop: 2 }}
+            color="primary"
+            onClick={() => setReadonly(false)}
+          >
+            Edit
+          </Button>
+        )}
+      </CardContent>
     </>
   )
 }
